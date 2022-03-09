@@ -89,7 +89,7 @@ class Scene {
 
   addModel() {
     const loader = new THREE.GLTFLoader();
-    loader.load("asset/Bonfire.glb", (gltf) => {
+    loader.load("assets/Bonfire.glb", (gltf) => {
 
       this.scene.add( gltf.scene ); 
   });
