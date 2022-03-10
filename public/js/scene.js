@@ -52,8 +52,8 @@ class Scene {
     window.addEventListener("resize", (e) => this.onWindowResize(e), false);
 
     // Helpers
-    this.scene.add(new THREE.GridHelper(500, 500));
-    this.scene.add(new THREE.AxesHelper(10));
+    // this.scene.add(new THREE.GridHelper(500, 500));
+    // this.scene.add(new THREE.AxesHelper(10));
 
     this.addLights();
     createEnvironment(this.scene);
