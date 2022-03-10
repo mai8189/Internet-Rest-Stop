@@ -38,7 +38,7 @@ class Scene {
       antialiasing: true,
     });
     //this.renderer.setClearColor(new THREE.Color("#5A6E9C"));
-    this.renderer.setClearColor(new THREE.Color("black"));
+    this.renderer.setClearColor(new THREE.Color("#2b3769"));
     this.renderer.setSize(this.width, this.height);
 
     // add controls:
@@ -89,10 +89,27 @@ class Scene {
 
   addModel() {
     const loader = new THREE.GLTFLoader();
-    loader.load("assets/Bonfire.glb", (gltf) => {
+    //source: https://sketchfab.com/3d-models/fire-7278c658bcb14213aa4e67fd2b487d4c#download
+    loader.load("assets/bonfire/scene.gltf", (gltf) => {
 
       this.scene.add( gltf.scene ); 
+      fire = gltf.scene.children[0];
+
+      mixer = new THREE.AnimationMixer(fire);
+      mixer.clipAction(gltf.animations[0]).play();
+
+      animate();
   });
+
+  function animate() {
+    requestAnimationFrame(animate);
+
+    const delta = clock.getDelta();
+    mixer.update(delta);
+
+    house.rotation.z += 0.005;
+    renderer.render(scene, camera);
+}
 }
 
   //////////////////////////////////////////////////////////////////////
